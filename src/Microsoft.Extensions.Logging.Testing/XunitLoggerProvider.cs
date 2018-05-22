@@ -18,6 +18,7 @@ namespace Microsoft.Extensions.Logging.Testing
             : this(output, LogLevel.Trace)
         {
         }
+
         public XunitLoggerProvider(ITestOutputHelper output, LogLevel minLevel)
             : this(output, minLevel, null)
         {

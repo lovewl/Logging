@@ -42,7 +42,10 @@ namespace Microsoft.Extensions.Logging.Testing
             return Tuple.Create(executionTime, output);
         }
 
-        protected Task<decimal> InvokeTestMethodAsync(ExceptionAggregator aggregator, ITestOutputHelper output)
+        protected override Task<decimal> InvokeTestMethodAsync(ExceptionAggregator aggregator)
+            => InvokeTestMethodAsync(aggregator, null);
+
+        private Task<decimal> InvokeTestMethodAsync(ExceptionAggregator aggregator, ITestOutputHelper output)
             => new LoggedTestInvoker(Test, MessageBus, TestClass, ConstructorArguments, TestMethod, TestMethodArguments, BeforeAfterAttributes, aggregator, CancellationTokenSource, output).RunAsync();
     }
 }
